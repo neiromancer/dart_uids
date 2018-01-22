@@ -7,3 +7,19 @@ pubspec.lock
 
 # Directory created by dartdoc
 doc/api/
+build/
+pubspec.lock
+.packages
+.pub/
+doc/api/
+*.iml
+*.ipr
+*.iws
+.idea/
+.DS_Store
+*.dart.js
+*.info.json
+*.js
+*.js_
+*.js.deps
+*.js.map
