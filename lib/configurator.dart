@@ -1,1 +1,0 @@
-export 'src/configurator.dart';
