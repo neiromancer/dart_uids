@@ -1,0 +1,4 @@
+class httpServer {
+  start() {}
+  stop() {}
+}
