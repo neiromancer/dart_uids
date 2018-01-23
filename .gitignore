@@ -4,7 +4,7 @@
 build/
 # Remove the following pattern if you wish to check in your lock file
 pubspec.lock
-
+.vscode/
 # Directory created by dartdoc
 doc/api/
 build/
@@ -23,3 +23,5 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+
+bin/probnik.dart

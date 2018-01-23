@@ -1,4 +1,4 @@
 class httpServer {
-  start() {}
-  stop() {}
+  start() {print('starting');}
+  stop() {print('stopped');}
 }

@@ -1,22 +1,27 @@
 import 'dart:io';
 import 'dart:async';
-import 'package:http/http.dart' as http;
 import '../bin/http_srv.dart';
+import 'package:test/test.dart';
+import 'dart:convert';
 
 
 
-void main() {
+Future main() async {
 
   final server = new httpServer();
-  await server.start();
-
-/*   test('Server sucsess start',() {
-    expect(... , prints('Listen adress on 8080'));
-  }); */
-
-  test('HTTP response',() {
-    expect(... , HttpRequest.request('/', method: 'GET', );
+  setUpAll(() async {
+    await server.start();
   });
-
-  await server.stop();
+  tearDownAll(() async {
+    await server.stop();
+  });
+  test('Request to Server', () async {
+    var client = new HttpClient();
+    HttpClientRequest request = await client.getUrl(Uri.parse('http://ipecho.net/plain'));
+    HttpClientResponse response = await request.close();
+    String value = await response.transform(UTF8.decoder).first;
+    client.close();
+    expect(value, equals('185.31.164.244'));
+    });
+ 
 }
