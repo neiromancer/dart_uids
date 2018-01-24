@@ -25,3 +25,4 @@ doc/api/
 *.js.map
 
 bin/probnik.dart
+*_try.dart
