@@ -1,51 +1,65 @@
 import 'package:test/test.dart';
-import '../lib/config.dart';
+
+import 'package:dart_uids/config.dart';
 
 void main() {
   Config config;
-  setUpAll(() => config = new Config('test/config.yaml'));
+  setUpAll(() {
+    config = new Config().load('test/config.yaml');
+  });
 
+  // Тестирование получения номера порта
   test('port getter', () {
     expect(config.server.port, 3000);
   });
 
+  // Тестирование получения адреса сервера
   test('host getter', () {
     expect(config.server.host, '127.0.0.1');
   });
 
+  // Тестирование получения длины UID
   test('uid length getter', () {
     expect(config.uid.length, 6);
   });
 
+  // Тестирование получения алфавита UID
   test('alphabet getter', () {
     expect(config.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWZYX');
   });
 
+  // Тестирование загрузки конфигурации с неуказанными параметрами
   test('incomplete config', () {
-    Config incomplete = new Config('test/incomplete.yaml');
-    expect(incomplete.server.port, 7777);
-    expect(incomplete.server.host, '127.0.0.1');
-    expect(incomplete.uid.length, 6);
-    expect(incomplete.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWZYX');
+    config.load('test/incomplete.yaml');
+    expect(config.server.port, 7777);
+    expect(config.server.host, '127.0.0.1');
+    expect(config.uid.length, 6);
+    expect(config.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWZYX');
   });
 
+  // Тестирование загрузки конфигурации с некорректными параметрами
   test('incorrect config', () {
-    Config incorrect = new Config('test/incorrect.yaml');
-    expect(incorrect.server.port, 7777);
-    expect(incorrect.server.host, '127.0.0.1');
-    expect(incorrect.uid.length, 6);
-    expect(incorrect.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWZYX');
+    expect(
+        () => config.load('test/incorrect.yaml'),
+        prints('Port is incorrect!\n'
+            'Host is incorrect!\n'
+            'UID length is incorrect!\n'
+            'UID alphabet is incorrect!\n'));
+    expect(config.server.port, 7777);
+    expect(config.server.host, '127.0.0.1');
+    expect(config.uid.length, 6);
+    expect(config.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWZYX');
   });
 
+  // Тестирование FileSystemException при загрузке файла конфигурации
   test('file system exception', () {
-    expect(() {
-      new Config('test/konfig.yaml');
-    }, prints('FileSystemException\n'));
+    expect(
+        () => config.load('test/konfig.yaml'), prints('FileSystemException\n'));
   });
 
-  test('config format', () {
-    expect(() {
-      new Config('test/config.yam');
-    }, prints('StateError\n'));
+  // Тестирование загрузки некорректного конфигурационного файла
+  test('wrong config format', () {
+    expect(() => config.load('test/other_file'),
+        prints('Format of the loaded config is incorrect!\n'));
   });
 }
