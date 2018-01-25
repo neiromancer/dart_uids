@@ -4,21 +4,24 @@ import 'server_config.dart';
 import 'uid_config.dart';
 
 class Config {
-	ServerConfig _server;
-	UIDConfig _uid;
+  ServerConfig _server;
+  UIDConfig _uid;
 
-  Config(String filePath) {
-    Map config = _loadYamlFileSync(filePath);
-		_server = new ServerConfig(config['server']);
-		_uid = new UIDConfig(config['uid']);
+  Config(String fileName) {
+    try {
+      if (fileName.split('.').last != 'yaml')
+        throw new StateError('incorrect config extension!');
+
+      Map config = loadYaml(new File(fileName).readAsStringSync());
+      _server = new ServerConfig(config['server']);
+      _uid = new UIDConfig(config['uid']);
+    } on StateError catch (e) {
+      print(e.runtimeType);
+    } on FileSystemException catch (e) {
+      print(e.runtimeType);
+    }
   }
 
-  Map _loadYamlFileSync(String path) {
-    File file = new File(path);
-    String content = file.readAsStringSync();
-    return loadYaml(content);
-  }
-
-	get server => _server;
-	get uid => _uid;
+  get server => _server;
+  get uid => _uid;
 }
