@@ -5,7 +5,7 @@ import 'package:dart_uids/config.dart';
 void main() {
   Config config;
   setUpAll(() {
-    config = new Config().load('test/config.yaml');
+    config = Config.instance().load('test/config.yaml');
   });
 
   // Тестирование получения номера порта

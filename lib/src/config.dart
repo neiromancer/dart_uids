@@ -16,8 +16,8 @@ class Config {
   /// Экземпляр класса конфигурации сервиса
   static Config _config;
 
-  /// Конструктор
-  factory Config() {
+  /// Возвращает единственный экземпляр класса [Config]
+  static Config instance() {
     if (_config == null) _config = new Config._internal();
     return _config;
   }
