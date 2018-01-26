@@ -30,7 +30,7 @@ void main() {
 
   // Тестирование загрузки конфигурации с неуказанными параметрами
   test('incomplete config', () {
-    config.load('test/incomplete.yaml');
+    config.load('test/incomplete_config.yaml');
     expect(config.server.port, 7777);
     expect(config.server.host, '127.0.0.1');
     expect(config.uid.length, 6);
@@ -40,7 +40,7 @@ void main() {
   // Тестирование загрузки конфигурации с некорректными параметрами
   test('incorrect config', () {
     expect(
-        () => config.load('test/incorrect.yaml'),
+        () => config.load('test/incorrect_config.yaml'),
         prints('Port is incorrect!\n'
             'Host is incorrect!\n'
             'UID length is incorrect!\n'
@@ -59,7 +59,7 @@ void main() {
 
   // Тестирование загрузки некорректного конфигурационного файла
   test('wrong config format', () {
-    expect(() => config.load('test/other_file'),
+    expect(() => config.load('test/not_yaml_file'),
         prints('Format of the loaded config is incorrect!\n'));
   });
 }

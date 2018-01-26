@@ -35,9 +35,12 @@ class Config {
         _server = new ServerConfig(config['server']);
         _uid = new UIDConfig(config['uid']);
       } else
-        print('Format of the loaded config is incorrect!');
+        throw (new FormatException(
+            'Format of the loaded config is incorrect!'));
     } on FileSystemException catch (e) {
       print(e.runtimeType);
+    } catch (e) {
+      print(e.message);
     }
     return _config;
   }
