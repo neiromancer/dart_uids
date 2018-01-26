@@ -1,9 +1,31 @@
-# Files and directories created by pub
+# https://www.dartlang.org/tools/private-files.html
+
+# files and directories created by pub
+build/
+pubspec.lock
 .packages
 .pub/
-build/
-# Remove the following pattern if you wish to check in your lock file
-pubspec.lock
 
-# Directory created by dartdoc
+# API documentation directory created by dartdoc
 doc/api/
+
+# files and directories created by other development environments
+*.iml
+*.ipr
+*.iws
+.idea/
+.DS_Store
+
+# generated JavaScript files
+*.dart.js
+*.info.json
+*.js
+*.js_
+*.js.deps
+*.js.map
+
+# emacs
+*~
+\#*\#
+
+.vscode
