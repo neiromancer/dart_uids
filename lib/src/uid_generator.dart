@@ -1,6 +1,11 @@
+import 'package:dart_uids/config.dart';
+
 class UidGenerator {
+  
+  static Config config = Config.instance(); 
+  String alf = config.uid.alphabet;
   //На вход можно передать алфавит, если он не задан, генератор будет работать на стандартных  параметрах
-  String generate([String alf]) {
+  String generate() {
     int n;
     if (alf != null) {
       n = alf.length;
