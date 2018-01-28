@@ -17,13 +17,14 @@ Future main() async {
     // создание нового клиента
     var client = new HttpClient();
 
-    // чтение актуального порта и адреса из конфига запуска сервера
-    var config = Config.instance();
-    int s_port = config.server.port;
-    String s_host = config.server.host;
+        // чтение актуального порта и адреса из конфига запуска сервера
+    var config = Config.instance().server;
 
     // отправка запроса
-    HttpClientRequest request = await client.get(s_host, s_port, '/');
+    HttpClientRequest request = await client.get(
+      config.host, 
+      config.port, 
+      '/');
     HttpClientResponse response = await request.close();
 
     // чтение ответа сервера

@@ -8,14 +8,14 @@ class UidServer {
   String uid = new UidGenerator().generate();
 
   // обращение к конфигу
-  var config = Config.instance();
+  var config = Config.instance().server;
   HttpServer _server;
 
   Future start() async {
     // запуск сервера по команде диспетчера
     _server = await HttpServer.bind(
-      config.server.host,
-      config.server.port,
+      config.host,
+      config.port,
     );
     //отчет в консоль о успешном запуске и актуальном адрес:порт
     print('Listening on ${_server.address}:${_server.port}');
