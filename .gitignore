@@ -26,3 +26,9 @@ doc/api/
 
 bin/probnik.dart
 *_try.dart
+*.bak
+lib/config.dart
+lib/src/config.dart
+lib/src/server_config.dart
+lib/src/uid_config.dart
+lib/src/uid_generator.dart
