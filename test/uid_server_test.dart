@@ -20,10 +20,10 @@ Future main() async {
     var client = new HttpClient();
 
     // чтение актуального порта и адреса из конфига запуска сервера
-    var config = Config.instance().server;
+    // var config = Config.instance().server;
 
     // отправка запроса
-    HttpClientRequest request = await client.get(config.host, config.port, '/');
+    HttpClientRequest request = await client.get(_config.host, _config.port, '/');
     HttpClientResponse response = await request.close();
 
     // чтение ответа сервера
