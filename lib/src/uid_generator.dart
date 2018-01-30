@@ -1,40 +1,24 @@
 import 'package:dart_uids/config.dart';
+import 'dart:math';
 
 class UidGenerator {
-  
-  static Config config = Config.instance(); 
-  String alf = config.uid.alphabet;
-  //На вход можно передать алфавит, если он не задан, генератор будет работать на стандартных  параметрах
+  static Config config = Config.instance();
   String generate() {
-    int n;
-    if (alf != null) {
-      n = alf.length;
-    } else {
-      n = 35;
+    //Делаем проверку на возможность генерации с задаными параметрами
+    if (pow(config.uid.alphabet.length, config.uid.length) < 1829088000) {
+      throw new StateError('Wrong configuration parameters');
     }
-    ;
 //Находим разницу между текущей датой и 01.01.2018 в секундах
     int difference = new DateTime.now()
         .difference(new DateTime.utc(2018, DateTime.JANUARY, 1))
         .inSeconds;
 //Полученную разницу в секундах переводим в систему счисления с основанием N
-    String kk = difference.toRadixString(n);
-
-/* При работе со стандартным алфавитом(вызов без аргументов):
-- меняем все О на Z;
-- выполняем условие длины в 6 символов;
-иначе меняем все символы, на заданные в алфавите */
-    if (alf == null) {
-      kk = kk.toUpperCase().replaceAll('O', 'Z');
-      while (kk.length < 6) {
-        kk = '0' + kk;
-      }
-      ;
-    } else {
-      for (int i = 0; i < n; i++) {
-        kk = kk.replaceAll(i.toRadixString(n), alf[i]);
-      }
+    String kk = difference.toRadixString(config.uid.alphabet.length);
+//Добавляем нули впереди до необходимой длины
+    while (kk.length < config.uid.length) {
+      kk = '0' + kk;
     }
+    ;
     return (kk);
   }
 }
