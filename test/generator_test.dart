@@ -17,9 +17,4 @@ void main() {
         .inSeconds;
     expect(k, equals(e));
   });
-// Проверка с параметрами
-  test('Correct symbols used', () {
-    String r1 = new UidGenerator().generate();
-    expect(r1.contains(new RegExp(r'[A-F]')), equals(true));
-  });
 }
