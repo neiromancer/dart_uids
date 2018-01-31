@@ -37,7 +37,7 @@ void main() {
   test('incompatible parameters', () {
     config.load('test/incompatible_config.yaml');
     expect(
-        () => generator.generate(),
+        () => new UidGenerator(),
         throwsA(predicate((e) =>
             e is StateError && e.message == 'Wrong configuration parameters')));
   });
