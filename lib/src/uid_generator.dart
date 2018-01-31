@@ -1,9 +1,14 @@
 import 'package:dart_uids/config.dart';
 import 'dart:math';
 
+/// Генератор уникальных идентификаторов
 class UidGenerator {
+  /// Текущая конфигурация
   static Config config = Config.instance();
 
+  /// Генерирует uid
+  ///
+  /// Возвращает значение uid на основе значения текущего времени
   String generate() {
     //Делаем проверку на возможность генерации с задаными параметрами
     if (pow(config.uid.alphabet.length, config.uid.length) < 1829088000) {
@@ -22,6 +27,6 @@ class UidGenerator {
     while (uid.length < config.uid.length) {
       uid = '0' + uid;
     }
-    return (uid);
+    return (uid.toUpperCase());
   }
 }
