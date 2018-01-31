@@ -13,16 +13,11 @@ void main() {
     generator = new UidGenerator();
   });
 
-  /// Сравнивает два uid, последовательно сгенерированных интервалом в секунду
-  Future<bool> compareUids() async {
-    final String uid = generator.generate();
-    return new Future.delayed(new Duration(seconds: 1),
-        () => uid == generator.generate() ? true : false);
-  }
-
   //Тестирование последовательной генерации разных uid
   test('different uids', () async {
-    expect(await compareUids(), false);
+    final String uid = generator.generate();
+    await new Future.delayed(const Duration(seconds: 1));
+    expect(generator.generate() == uid, false);
   });
 
   // Тестирование соответствия параметрам конфигурации
