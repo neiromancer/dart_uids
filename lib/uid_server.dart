@@ -26,10 +26,8 @@ class UidServer {
       _port,
     );
 
-    // Печатает в консоль отчет о успешном запуске и актуальном адрес:порт.
     print('Listening on ${_server.address}:${_server.port}');
 
-    // Обрабатывает запрос к серверу.
     _server.listen(_handleRequest);
   }
 
