@@ -34,7 +34,6 @@ class UidServer {
 
   /// Останавливает сервер.
   Future stop() async {
-    // Закрывает экземпляр сервера по команде диспетчера.
     await _server.close();
   }
 }
@@ -51,6 +50,5 @@ class UidServer {
       request.response.statusCode = HttpStatus.BAD_REQUEST;
     }
 
-    // Закрывает ответ.
     request.response.close();
   }
