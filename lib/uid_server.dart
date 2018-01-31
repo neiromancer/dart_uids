@@ -4,7 +4,7 @@ import 'package:dart_uids/src/uid_generator.dart';
 
 /// HTTP_UID сервер.
 class UidServer {
-  /// переменная сервер.
+  /// HTTP_UID сервер.
   HttpServer _server;
   /// порт HTTP сервера.
   final int _port;
@@ -39,7 +39,7 @@ class UidServer {
   }
 }
 
-/// Обработки запроса и ответа на него.
+/// Обрабатывает запрос к серверу
   void _handleRequest(request) {
     // преверка запроса на валидность.
     if (request.method == 'GET' && request.uri.path == "/") {
