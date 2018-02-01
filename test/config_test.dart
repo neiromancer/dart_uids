@@ -25,7 +25,7 @@ void main() {
 
   // Тестирование получения алфавита UID
   test('alphabet getter', () {
-    expect(config.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWZYX');
+    expect(config.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWXYZ');
   });
 
   // Тестирование загрузки конфигурации с неуказанными параметрами
@@ -34,7 +34,7 @@ void main() {
     expect(config.server.port, 7777);
     expect(config.server.host, '127.0.0.1');
     expect(config.uid.length, 6);
-    expect(config.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWZYX');
+    expect(config.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWXYZ');
   });
 
   // Тестирование загрузки конфигурации с некорректными параметрами
@@ -48,7 +48,7 @@ void main() {
     expect(config.server.port, 7777);
     expect(config.server.host, '127.0.0.1');
     expect(config.uid.length, 6);
-    expect(config.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWZYX');
+    expect(config.uid.alphabet, '0123456789ABCDEFGHIJKLMNPQRSTUVWXYZ');
   });
 
   // Тестирование FileSystemException при загрузке файла конфигурации
